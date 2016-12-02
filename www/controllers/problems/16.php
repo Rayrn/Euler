@@ -22,14 +22,16 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 // Problem processing
 //------------------------------------------------------------------
 /** Problem details:
- * How many routes are there through a 20×20 grid?
+ * What is the sum of the digits of the number 2^1000?
  */
 
 if($action == '') {
-    $size = 20;
+    $base = 2;
+    $exponent = 1000;
 
-    $paths = getPermutations($size);
+    $number = gmp_pow($base, $exponent);
+    $sum = longAddition(str_split($number));
 
     // Display form
-    require_once (VIEW_ROOT.'/problems/15.php');
+    require_once (VIEW_ROOT.'/problems/16.php');
 }

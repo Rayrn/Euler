@@ -312,3 +312,19 @@ function collatzCount($in, &$collatz_set = array()) {
 
     return $sequence;
 }
+
+/**
+ * Get the number of permutations in a path to a square grid
+ * @param integer $length Length of the grid
+ * @return integer $permutations Permutations
+ */
+function getPermutations($length) {
+    $permutations = 1;
+
+    for($i = 0; $i < $length; $i++) {
+        $permutations *= (2 * $length) - $i;
+        $permutations /= $i + 1;
+    }
+
+    return $permutations;
+}
