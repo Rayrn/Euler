@@ -1,0 +1,46 @@
+/* Custom styles overwriting bootstrap defaults */
+
+.error-text {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.slow-transition {
+    -webkit-transition: color 1s;
+    -moz-transition: color 1s;
+    -ms-transition: color 1s;
+    -o-transition: color 1s;
+    transition: color 1s;
+}
+
+.monospace {
+	font-family: "Courier New", Courier, monospace;
+}
+
+.highlight-red {
+	color: #FF0000;
+}
+
+.highlight-green {
+	color: #00FF00;
+}
+
+.highlight-blue {
+	color: #0000FF;
+}
+
+.ul-striped>li:nth-child(even) {
+	background-color: #E6E6E6;
+}
+
+.ul-striped>li:nth-child(even):hover {
+	background-color: #F2F2F2;
+}
+
+li a {
+	display: block;
+}
+
+li a, li a:hover {
+	text-decoration: none;
+}
