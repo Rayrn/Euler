@@ -256,3 +256,59 @@ function longAddition($numbers) {
 function addSet($in) {
     return is_array($in) ? array_sum($in) : (int) $in;
 }
+
+/**
+ * Apply the collatz sequence to a number
+ * @param integer $in Number to process
+ * @return integer[] $sequence full sequence
+ */
+function collatzFull($in) {
+    // Initialise
+    $collatz = $in;
+    $sequence = array();
+
+    // Record first value
+    $sequence[] = $in;
+
+    // Run sequence
+    while($collatz > 1) {
+        // Apply Rule
+        $collatz = $collatz % 2 == 0 ? $collatz / 2 : ($collatz * 3) + 1;
+
+        // Append
+        $sequence[] = $collatz;
+    }
+
+    return $sequence;
+}
+
+/**
+ * Apply the collatz sequence to a number 
+ * @param integer $in Number to process
+ * @return integer[] $sequence Number of iterations in sequence
+ */
+function collatzCount($in, &$collatz_set = array()) {
+    // Initialise
+    $collatz = $in;
+    $sequence = 1;
+
+    // Run sequence
+    while($collatz > 1) {
+        // Apply Rule
+        $collatz = $collatz & 1 ? $collatz * 3 + 1 : $collatz / 2 ;
+
+        // Check if we already have the data saved
+        if(isset($collatz_set[$collatz])) {
+            $sequence += $collatz_set[$collatz];
+            break;
+        }
+
+        // Increment
+        $sequence++;
+    }
+
+    // Save
+    $collatz_set[$in] = $sequence;
+
+    return $sequence;
+}
