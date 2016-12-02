@@ -194,3 +194,65 @@ function getDivisors($number) {
     // Output
     return $divisors;
 }
+
+/**
+ * Add together a series of numbers using long addition
+ * @param int[] $numbers Array of numbers to process
+ * @return int sum of $numbers
+ */
+function longAddition($numbers) {
+    if(!is_array($numbers)) {
+        return (int) $numbers;
+    }
+
+    // Initialise
+    $answer = '';
+    $remainder = 0;
+
+    // Find longest string
+    $lengths = array_map('strlen', $numbers);
+    $longest = max($lengths);
+
+    // Pad out all strings to match longest
+    foreach($numbers as $index=>$val) {
+        $numbers[$index] = str_pad($val, $longest, ' ', STR_PAD_LEFT);
+    }
+
+
+    for($i = ($longest - 1); $i > -1; $i--) {
+        // Reset/Init
+        $digits = array();
+        $digits[] = $remainder;
+
+        // Build Numbers Array
+        foreach($numbers as $number) {
+            $digits[] = $number[$i];
+        }
+
+        // Calculate Sum
+        $sum = addSet($digits);
+
+        // Append final digit to string
+        $answer = substr($sum, -1) . $answer;
+
+        // Carry over
+        $remainder = substr($sum, 0, -1);
+    }
+
+    // Trim last digit from remainder
+    $remainder = substr($sum, 0, -1);
+
+    // Append final digit to string
+    $answer = $remainder . $answer;
+
+    return $answer;
+}
+
+/**
+ *  Add together a series of numbers and return the results
+ * @param int[] $in Array of numbers to process
+ * @return int sum of $in
+ */
+function addSet($in) {
+    return is_array($in) ? array_sum($in) : (int) $in;
+}

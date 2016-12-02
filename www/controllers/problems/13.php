@@ -127,6 +127,8 @@ $numbers[] = '53503534226472524250874054075591789781264330331690';
 
 if($action == '') {
 
+    $answer = longAddition($numbers);
+
     // Display form
     require_once (VIEW_ROOT.'/problems/13.php');
 }

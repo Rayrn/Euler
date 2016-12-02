@@ -22,7 +22,16 @@ require_once APP_ROOT.'/inc/page_begin.php';
         <div class="col-md-6 col-md-offset-3">
             <div class="row text-center">
                 <div class="col-xs-12">
-
+                    <div class="grid monospace">
+                        <!-- Print Grid with sequence highlighted -->
+                        <?php foreach($numbers as $number) { ?>
+                            <?php echo $number; ?>
+                            <br/>
+                        <?php } ?>
+                    </div>
+                </div><!-- /.col-xs-12 -->
+                <div class="col-xs-12">
+                    <h4><?php echo $answer; ?></h4>
                 </div><!-- /.col-xs-12 -->
             </div><!-- /.row -->
         </div><!-- /.col-md-6 col-md-offset-3 -->
