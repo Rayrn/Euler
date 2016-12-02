@@ -22,7 +22,7 @@ require_once APP_ROOT.'/inc/page_begin.php';
         <div class="col-md-6 col-md-offset-3">
             <div class="row ">
                 <div class="col-xs-12">
-                        
+                    Number of paths in a <?php echo "$size x $size";?> grid: <?php echo number_format($paths); ?>
                 </div><!-- /.col-xs-12 -->
             </div><!-- /.row -->
         </div><!-- /.col-md-6 col-md-offset-3 -->

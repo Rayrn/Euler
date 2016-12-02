@@ -26,8 +26,21 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
  */
 
 if($action == '') {
+    $size = 200;
 
+    $paths = getPermutations($size);
 
     // Display form
     require_once (VIEW_ROOT.'/problems/15.php');
+}
+
+function getPermutations($length) {
+    $paths = 1;
+
+    for($i = 0; $i < $length; $i++) {
+        $paths *= (2 * $length) - $i;
+        $paths /= $i + 1;
+    }
+
+    return $paths;
 }
