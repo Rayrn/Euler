@@ -166,11 +166,12 @@ function getPrimeFactors($number, &$predefined = array()) {
 }
 
 /**
- * Get the number of divisors for a given number
+ * Get the divisors for a given number
  * @param integer $number Value to divide
+ * @param boolean $skipSelf Include base number in list?
  * @return integer[] $divisors Array of divisors
  */
-function getDivisors($number) {
+function getDivisors($number, $skipSelf = false) {
     // Invalid
     if($number < 1) {
         return array();
@@ -190,6 +191,10 @@ function getDivisors($number) {
 
     // Sort sequentially
     ksort($divisors);
+
+    if($skipSelf) {
+        unset($divisors[$number]);
+    }
 
     // Output
     return $divisors;
@@ -461,4 +466,13 @@ function convert_number_to_words($number, $lang = 'UK') {
  */
 function checkrowmax($base, $opt1, $opt2) {
     return $opt1 > $opt2 ? $base + $opt1 : $base + $opt2;
+}
+
+/**
+ * Calculates the letters position in the alphabet (A=1, Z=26);
+ * @param string $letter Letter to check
+ * @return integer Position
+ */
+function positionInAlphabet($letter) {
+    return ord(strtolower($letter)) - 96;
 }
