@@ -22,25 +22,36 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 // Problem processing
 //------------------------------------------------------------------
 /** Problem details:
- * If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+ * Find the maximum total from top to bottom of the triangle below
  */
+// Build Array
+$data = fopen(APP_ROOT.'/assets/files/67.txt', 'r');
+
+$pyramid = array();
+
+while($row = fgets($data)) {
+	$set = explode(' ', $row);
+	$pyramid[] = $set;
+}
+
 if($action == '') {
-	// Init
-	$i = 1;
-	$letter_count = 0;
+	$dynamic_pyramid = array_reverse($pyramid);
 
-	do {
-		$number = convert_number_to_words($i, 'US');
+	foreach($dynamic_pyramid as $row=>$set) {
+		// Skip first row
+		if($row == 0) {
+			continue;
+		}
 
-		// Remove hypens and spaces
-		$number = str_replace(' ', '', $number);
-		$number = str_replace('-', '', $number);
+		foreach($set as $index=>$number) {
+			$base = $number;
+			$opt1 = $dynamic_pyramid[$row - 1][$index];
+			$opt2 = $dynamic_pyramid[$row - 1][$index+1];
 
-		$letter_count += strlen($number);
-
-		$i++;
-	} while ($i <= 1000);
+			$dynamic_pyramid[$row][$index] = checkrowmax($base, $opt1, $opt2);
+		}
+	}
     
     // Display form
-    require_once (VIEW_ROOT.'/problems/17.php');
+    require_once (VIEW_ROOT.'/problems/67.php');
 }

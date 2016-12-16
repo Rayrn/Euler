@@ -333,10 +333,10 @@ function getPermutations($length) {
  * Converts a numeric integer to a string representation, following british naming conventions of course (use of and)
  * Source : http://www.karlrixon.co.uk/writing/convert-numbers-to-words-with-php/
  * @param integer $number Number to convert
+ * @param string $lang Default UK, opts: US
  * @return string $string Textual representation
  */
-function convert_number_to_words($number) {
-
+function convert_number_to_words($number, $lang = 'UK') {
     $hyphen      = '-';
     $conjunction = ' and ';
     $separator   = ', ';
@@ -380,6 +380,11 @@ function convert_number_to_words($number) {
         1000000000000000000 => 'quintillion'
     );
 
+    // Remove 'U' from fourty
+    if($lang == 'US') {
+        $dictionary[40] = 'forty';
+    }
+
     if (!is_numeric($number)) {
         return false;
     }
@@ -394,7 +399,7 @@ function convert_number_to_words($number) {
     }
 
     if ($number < 0) {
-        return $negative . convert_number_to_words(abs($number));
+        return $negative . convert_number_to_words(abs($number), $lang);
     }
 
     $string = $fraction = null;
@@ -420,17 +425,17 @@ function convert_number_to_words($number) {
             $remainder = $number % 100;
             $string = $dictionary[$hundreds] . ' ' . $dictionary[100];
             if ($remainder) {
-                $string .= $conjunction . convert_number_to_words($remainder);
+                $string .= $conjunction . convert_number_to_words($remainder, $lang);
             }
             break;
         default:
             $baseUnit = pow(1000, floor(log($number, 1000)));
             $numBaseUnits = (int) ($number / $baseUnit);
             $remainder = $number % $baseUnit;
-            $string = convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit];
+            $string = convert_number_to_words($numBaseUnits, $lang) . ' ' . $dictionary[$baseUnit];
             if ($remainder) {
                 $string .= $remainder < 100 ? $conjunction : $separator;
-                $string .= convert_number_to_words($remainder);
+                $string .= convert_number_to_words($remainder, $lang);
             }
             break;
     }
@@ -445,4 +450,15 @@ function convert_number_to_words($number) {
     }
 
     return $string;
+}
+
+/**
+ * Return $opt1 > $opt2 ? $base + $opt1 : $base + $opt2
+ * @param integer $base Base value
+ * @param integer $opt1 Number to check
+ * @param integer $opt2 Number to check
+ * @return integer greatest value
+ */
+function checkrowmax($base, $opt1, $opt2) {
+    return $opt1 > $opt2 ? $base + $opt1 : $base + $opt2;
 }

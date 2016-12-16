@@ -22,25 +22,25 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 // Problem processing
 //------------------------------------------------------------------
 /** Problem details:
- * If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+ * How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)
  */
+
 if($action == '') {
-	// Init
-	$i = 1;
-	$letter_count = 0;
+	$answer = 0;
 
+	$start = strtotime('1901-01-01');
+	$end = strtotime('2000-12-31');
+
+	$date = $start;
 	do {
-		$number = convert_number_to_words($i, 'US');
+		if(date('D', $date) == 'Sun') {
+			$answer++;
+		}
 
-		// Remove hypens and spaces
-		$number = str_replace(' ', '', $number);
-		$number = str_replace('-', '', $number);
+		$date = strtotime('+1 month', $date);
 
-		$letter_count += strlen($number);
-
-		$i++;
-	} while ($i <= 1000);
+	} while($date < $end);
     
     // Display form
-    require_once (VIEW_ROOT.'/problems/17.php');
+    require_once (VIEW_ROOT.'/problems/19.php');
 }

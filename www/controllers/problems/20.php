@@ -22,25 +22,15 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 // Problem processing
 //------------------------------------------------------------------
 /** Problem details:
- * If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+ * Find the sum of the digits in the number 100!
  */
+
 if($action == '') {
-	// Init
-	$i = 1;
-	$letter_count = 0;
+    // Number to apply solution to
+    $request = 100;
 
-	do {
-		$number = convert_number_to_words($i, 'US');
-
-		// Remove hypens and spaces
-		$number = str_replace(' ', '', $number);
-		$number = str_replace('-', '', $number);
-
-		$letter_count += strlen($number);
-
-		$i++;
-	} while ($i <= 1000);
+    $answer = array_sum(str_split(gmp_fact($request)));
     
     // Display form
-    require_once (VIEW_ROOT.'/problems/17.php');
+    require_once (VIEW_ROOT.'/problems/20.php');
 }

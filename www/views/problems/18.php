@@ -13,7 +13,7 @@ require_once APP_ROOT.'/inc/page_begin.php';
         <div class="col-xs-12">
             <div class="panel-heading">
                <div class="panel-title text-center">
-                    <h1 class="title text-warning">Number letter counts</h1>
+                    <h1 class="title text-warning">Maximum path sum I</h1>
                     <hr />
                 </div>
             </div>
@@ -21,8 +21,17 @@ require_once APP_ROOT.'/inc/page_begin.php';
 
         <div class="col-md-6 col-md-offset-3">
             <div class="row ">
-                <div class="col-xs-12">
-                    Number of letters used when writing out <em>one</em> to <em>one thousand</em> is <?php echo number_format($letter_count); ?>
+                <div class="col-xs-12 text-center">
+                    <?php foreach($pyramid as $row) { ?>
+                        <div class="grid monospace">
+                            <?php foreach($row as $number) {
+                                echo $number.' ';
+                            } ?>
+                        </div>
+                    <?php } ?>
+                </div><!-- /.col-xs-12 -->
+                <div class="col-xs-12 text-center">
+                     The maximum total from top to bottom of the triangle above is <?php echo number_format(end($dynamic_pyramid)[0]); ?>
                 </div><!-- /.col-xs-12 -->
             </div><!-- /.row -->
         </div><!-- /.col-md-6 col-md-offset-3 -->
