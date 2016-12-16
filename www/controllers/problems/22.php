@@ -22,7 +22,7 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 // Problem processing
 //------------------------------------------------------------------
 /** Problem details:
- * Evaluate the sum of all the amicable numbers under 10000
+ * Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
  */
 
 if($action == '') {
@@ -48,5 +48,5 @@ if($action == '') {
     $answer = array_sum($values);;
     
     // Display form
-    require_once (VIEW_ROOT.'/problems/21.php');
+    require_once (VIEW_ROOT.'/problems/22.php');
 }
