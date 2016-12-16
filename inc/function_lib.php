@@ -467,3 +467,12 @@ function convert_number_to_words($number, $lang = 'UK') {
 function checkrowmax($base, $opt1, $opt2) {
     return $opt1 > $opt2 ? $base + $opt1 : $base + $opt2;
 }
+
+/**
+ * Calculates the letters position in the alphabet (A=1, Z=26);
+ * @param string $letter Letter to check
+ * @return integer Position
+ */
+function positionInAlphabet($letter) {
+    return ord(strtolower($letter)) - 96;
+}
