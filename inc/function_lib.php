@@ -166,11 +166,12 @@ function getPrimeFactors($number, &$predefined = array()) {
 }
 
 /**
- * Get the number of divisors for a given number
+ * Get the divisors for a given number
  * @param integer $number Value to divide
+ * @param boolean $skipSelf Include base number in list?
  * @return integer[] $divisors Array of divisors
  */
-function getDivisors($number) {
+function getDivisors($number, $skipSelf = false) {
     // Invalid
     if($number < 1) {
         return array();
@@ -190,6 +191,10 @@ function getDivisors($number) {
 
     // Sort sequentially
     ksort($divisors);
+
+    if($skipSelf) {
+        unset($divisors[$number]);
+    }
 
     // Output
     return $divisors;
