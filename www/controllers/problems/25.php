@@ -26,7 +26,43 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
  */
 
 if($action == '') {
+	// Print sequence
+	$a = 0;
+	$b = 1;
+
+	$answer = fibonacci($a, $b, 90);
 
     // Display form
     require_once (VIEW_ROOT.'/problems/25.php');
+}
+
+function fibonacci(&$a, &$b, $cap = 0, $preserve_original_values = false) {
+	// Check validity
+	if($a < 0 || $b < 0) {
+		return false;
+	}
+
+	// Initiate
+	$a0 = $a;
+	$b0 = $b;
+	$c = 0;
+
+	// Run sequence
+	do {
+		// Sum numbers
+		$c = $a + $b;
+
+		// Update values for next iteration
+		$a = $b;
+		$b = $c;
+	} while($c < $cap);
+
+	// If we've been told to preseve reset when we have the answer
+	if($preserve_original_values) {
+		$a = $a0;
+		$b = $b0;
+	}
+
+	// Return answer
+	return $c;
 }
