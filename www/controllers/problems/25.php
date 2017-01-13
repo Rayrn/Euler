@@ -22,24 +22,11 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 // Problem processing
 //------------------------------------------------------------------
 /** Problem details:
- * Find the sum of the digits in the number 100!
+ * What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
  */
-if(!extension_loaded('gmp')) {
-    $action = 'error';
-    $message = 'Sorry, this code requires the GMP extension to be loaded';
-}
 
 if($action == '') {
-    // Number to apply solution to
-    $request = 100;
 
-    $answer = array_sum(str_split(gmp_fact($request)));
-    
     // Display form
-    require_once (VIEW_ROOT.'/problems/20.php');
-}
-
-if($action == 'error') {
-    // Display error page
-    require_once (VIEW_ROOT.'/error.php');
+    require_once (VIEW_ROOT.'/problems/25.php');
 }

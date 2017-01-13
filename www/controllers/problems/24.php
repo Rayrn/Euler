@@ -24,10 +24,15 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 /** Problem details:
  * What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
  */
-$numbers = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-natsort($numbers);
+if(!extension_loaded('gmp')) {
+    $action = 'error';
+    $message = 'Sorry, this code requires the GMP extension to be loaded';
+}
 
 if($action == '') {
+    $numbers = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    natsort($numbers);
+
     // Backup original data
     $numbers_archive = $numbers;
 
@@ -67,8 +72,7 @@ if($action == '') {
     require_once (VIEW_ROOT.'/problems/24.php');
 }
 
-function swap($i, $j, &$data) {
-    $k = $data[$i];
-    $data[$i] = $data[$j];
-    $data[$j] = $k;
+if($action == 'error') {
+    // Display error page
+    require_once (VIEW_ROOT.'/error.php');
 }

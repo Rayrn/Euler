@@ -24,6 +24,10 @@ $action = isset($_POST['action']) ? $_POST['action'] : $action;
 /** Problem details:
  * What is the sum of the digits of the number 2^1000?
  */
+if(!extension_loaded('gmp')) {
+    $action = 'error';
+    $message = 'Sorry, this code requires the GMP extension to be loaded';
+}
 
 if($action == '') {
     $base = 2;
@@ -34,4 +38,9 @@ if($action == '') {
 
     // Display form
     require_once (VIEW_ROOT.'/problems/16.php');
+}
+
+if($action == 'error') {
+    // Display error page
+    require_once (VIEW_ROOT.'/error.php');
 }
