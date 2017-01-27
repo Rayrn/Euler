@@ -1,6 +1,9 @@
 bin/
 vendor/
 
+rayrn
+rayrn.pub
+
 .DS_Store
 
 *.sublime-*
